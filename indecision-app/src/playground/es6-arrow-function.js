@@ -1,5 +1,3 @@
-'use strict';
-
 // function square(x) {
 //     return x*x;
 // };
@@ -17,7 +15,5 @@
 // let getFirstName= (firstName) =>{
 //     return firstName.split(' ')[0]
 // }
-var getFirstName = function getFirstName(firstName) {
-  return firstName.split(' ')[0];
-};
-console.log(getFirstName('Serif Bekar'));
+let getFirstName= (firstName) => firstName.split(' ')[0]
+console.log(getFirstName('Serif Bekar'))

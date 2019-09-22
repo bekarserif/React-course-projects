@@ -13,14 +13,12 @@ console.log('This is app.js')
 //     </div>
 // );
 
-
-
-var app={
+const app={
     title : 'React APP',
     subtitle: 'How not to make React App.',
     options :['One','Two']
 }
-var template=(
+const template=(
     <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
@@ -28,7 +26,7 @@ var template=(
     </div>
 );
 
-var user = {
+const user = {
     name : 'Andrew',
     age : 26,
     location : 'New York'
@@ -36,10 +34,10 @@ var user = {
 
 
 
-var userName='Mike';
-var userAge=26;
-var userLocation='New York'
-var templateTwo=(
+const userName='Mike';
+const userAge=26;
+const userLocation='New York'
+const templateTwo=(
     <div>
         <h1>{user.name ? user.name:'Anonymous'}</h1>
         {user.age >=18 && <p>Age : {user.age}</p>}
@@ -50,6 +48,6 @@ function getLocation(location) {
 
     return  location?<p>Location: {location}</p> :<p>Location: Unknown</p>
 }
-var appRoot=document.getElementById('app');
+const appRoot=document.getElementById('app');
 
 ReactDOM.render(template,appRoot)
