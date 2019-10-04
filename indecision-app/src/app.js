@@ -1,53 +1,135 @@
-console.log('This is app.js')
+class IndecisionApp extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            options:[]
+        } 
+    }
+    render(){
+        const tittle='Indecision';
+        const subtitle='Put your life in the hands of a computer.';
+        // const options=['Thing one','Thing two','Thing three']
+
+        return(
+            <div>
+                <Header title={tittle} subtitle={subtitle}/>
+                <Action hasOptions={this.state.options.length>0}/>
+                <Options options={this.state.options}/>
+                <AddOption />
+            </div>
+        )
+    }
+}
+
+class Header extends React.Component{    
+    render(){
+        return(
+            <div>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.subtitle}</h2>
+            </div>
+        )
+    }
+}
+class Action extends React.Component{
+    handlePick(){
+        alert('handlePick')
+    }
+    render(){
+        return(
+            <div>
+                {/* <button onClick={this.handlePick()}>What Should I do?</button> Eğer bu kod içerisinde
+                handlepick() methodu şeklinde kullanılırsa sayfa yenilendiği anda çalışır.
+                Eğer onlick eventinde çalışmasını istiyorsak 
+                <button onClick={this.handlePick}>What Should I do?</button> şeklinde kullanmalıyız.                
+                */}
+                <button 
+                onClick={this.handlePick}
+                disabled={!this.props.hasOptions}
+                >
+                What Should I do?
+                </button>
+            </div>
+        )
+    }
+}
 
 
-//JSX --Javascript XML
-// var template=(
+class Options extends React.Component{
+    constructor(props){
+        super(props)
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
+    handleRemoveAll(){
+        alert('removeAll')
+    }
+    render(){
+        return(
+            <div>
+            <button onClick={this.handleRemoveAll}>I will remove it all!</button>
+                {this.props.options.map((option)=><Option key={option} optionText={option}/>)}
+            </div>
+        )
+    }
+}
+//key valuesuna prop olarak erişilemez.
+class Option extends React.Component{
+    render(){
+        return(
+            <p>{this.props.optionText}</p>
+        )
+    }
+}
+
+
+class AddOption extends React.Component{
+    onFormSubmit(e){
+        e.preventDefault();
+
+        console.log('form submitted!');
+        const option=e.target.elements.option.value.trim();
+        if (option) {
+        alert(option)
+        }
+    e.target.elements.option.value='';
+    }
+    render(){
+        return(
+            <div>
+                <form onSubmit={this.onFormSubmit}>
+                    <input name='option' type='text'/>
+                    <button>Submit</button>
+                </form>
+            </div>
+        )
+    }
+}
+
+
+const obj={
+    name:'Vikram',
+    getName(){
+        return this.name;
+    }
+}
+// const getName=obj.getName;
+// console.log(getName());
+/*Burada getName değişkenine sadece objenin içerisindeki fonksiyonu atadığımız için name değişkeni
+içerisindeki değerleri alamaz. Yani objeye değil fonksiyonun kendisine bind edilmiş olur. Bu nedenle objenin
+içerisindeki tüm değerlere erişebilmesi için bind methodunun kullanılması gerekir.
+Aynı işlem react componentları içinde geçerlidir.
+Componentlar içerisinde tanımladığımız this.props değişkeni içerisindeki prop değerlerine render() içerisindeki
+fonksiyondan erişilebiliyorken event handler fonksiyonları içerisinde erişilemez.
+*/
+
+const getName=obj.getName.bind(obj);
+
+// const jsx = (
 //     <div>
-//     <h1>Hello world!</h1>
-//     <p>This is some info</p>
-//     <ol>
-//         <li>First Item</li>
-//         <li>Second Item</li>        
-//     </ol>
+//         <Header />
+//         <Action />
+//         <Options />
+//         <AddOption />
 //     </div>
-// );
-
-const app={
-    title : 'React APP',
-    subtitle: 'How not to make React App.',
-    options :['One','Two']
-}
-const template=(
-    <div>
-    <h1>{app.title}</h1>
-    {app.subtitle && <p>{app.subtitle}</p>}
-    {(app.options  && app.options.length>0) ? 'Here is your options': 'There are no options.'}
-    </div>
-);
-
-const user = {
-    name : 'Andrew',
-    age : 26,
-    location : 'New York'
-};
-
-
-
-const userName='Mike';
-const userAge=26;
-const userLocation='New York'
-const templateTwo=(
-    <div>
-        <h1>{user.name ? user.name:'Anonymous'}</h1>
-        {user.age >=18 && <p>Age : {user.age}</p>}
-        {getLocation(user.location)}
-    </div>
-);
-function getLocation(location) {
-
-    return  location?<p>Location: {location}</p> :<p>Location: Unknown</p>
-}
-const appRoot=document.getElementById('app');
-
-ReactDOM.render(template,appRoot)
+// ) Eski kullanım.
+ReactDOM.render(<IndecisionApp/>,document.getElementById('app'));
