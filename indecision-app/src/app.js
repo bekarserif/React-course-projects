@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import IndecisionApp from './components/IndecisionApp'
-
+import './styles/styles.scss';
+import 'normalize.css/normalize.css';
 ReactDOM.render(<IndecisionApp/>,document.getElementById('app'))
 
 
@@ -19,7 +20,7 @@ const oldSyntax=new OldSyntax();
 const greet= oldSyntax.getGreeting;
 
 
-console.log(oldSyntax.name);
+console.log(oldSyntax.name); 
 console.log(greet());
 /*old syntax içerisinde fonksiyon tanımlandığımız zaman bu fonksiyonu constructor içerisinde bind etmemiz
 gerekir. Aksi takdirde fonksiyon doğrudan bir değişkene tanımlandığında bindingi olmadığı için fonksiyon
