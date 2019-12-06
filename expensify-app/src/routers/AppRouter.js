@@ -8,7 +8,10 @@ import NotFoundPage from './../components/NotFoundPage';
 import Header from './../components/Header';
 
 
-const AppRouter= ()=>(
+class AppRouter extends React.Component {
+    
+    render(){
+        return(
     <BrowserRouter>
     <div>
     <Header />
@@ -16,11 +19,13 @@ const AppRouter= ()=>(
         <Route path="/" component={ExpenseDashboardPage} exact={true}/>
         <Route path="/create" component={AddExpensePage} />    
         <Route path="/edit/:id" component={EditExpensePage} />
+        <Route path="/edit" component={EditExpensePage} />
         <Route path="/help" component={HelpExpensePage} />
         <Route component={NotFoundPage} />
     </Switch>
     </div>
-    </BrowserRouter>
-)
+    </BrowserRouter>)
+    }
+}
 
 export default AppRouter;
