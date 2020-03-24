@@ -7,3 +7,6 @@ import 'normalize.css/normalize.css';
 
 
 ReactDOM.render(<AppRouter />,document.getElementById('app'))
+
+
+//asdasd
